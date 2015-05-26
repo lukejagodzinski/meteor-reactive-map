@@ -28,7 +28,12 @@ map.set({
 
 map.get('key'); // Returns "value".
 
-map.all(); // Returns { key: "value", key1: "value1", key2: "value2" }.
+map.entries(); // Returns {key: "value", key1: "value1", key2: "value2"}.
+map.all(); // Alias to "entries" method.
+
+map.keys(); // Returns ['key', 'key1', 'key2'].
+
+map.values(); // Returns ['value', 'value1', 'value2'].
 
 map.size; // Returns 3.
 
