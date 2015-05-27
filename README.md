@@ -1,13 +1,15 @@
 
 # ReactiveMap for Meteor
 
-## Table of Contents
+**Table of contents**
 
-- [About](#about)
+- [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
 
-## About
+## Introduction
+
+The ReactiveMap package introduces a reactive version of the JavaScript Map container.
 
 ## Installation
 
@@ -35,7 +37,7 @@ map.keys(); // Returns ['key', 'key1', 'key2'].
 
 map.values(); // Returns ['value', 'value1', 'value2'].
 
-map.size; // Returns 3.
+map.size(); // Returns 3.
 
 map.has('key'); // Return true.
 
