@@ -9,7 +9,7 @@
 
 ## Introduction
 
-The ReactiveMap package introduces a reactive version of the JavaScript Map container.
+The ReactiveMap package introduces a reactive version of the JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) container.
 
 ## Installation
 
