@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Reactive map for Meteor',
-  version: '0.2.3',
+  version: '1.0.0',
   name: 'jagi:reactive-map',
   git: 'https://github.com/jagi/meteor-reactive-map.git'
 });
