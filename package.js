@@ -10,9 +10,18 @@ Package.onUse(function(api) {
 
   api.use('underscore');
   api.use('tracker');
-  api.use('ejson');
 
   api.addFiles('lib/reactive_map.js', ['client', 'server']);
 
   api.export(['ReactiveMap'], ['client', 'server']);
+});
+
+Package.onTest(function(api) {
+  api.use([
+    'tinytest',
+    'tracker',
+    'jagi:reactive-map'
+  ]);
+
+  api.addFiles('test/reactive_map.js', ['client', 'server']);
 });
