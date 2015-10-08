@@ -37,12 +37,12 @@ Tinytest.add('ReactiveMap', function(test) {
   test.isTrue(has,
     'Initial: Wrong value from the "has()" method'
   );
-  test.equal(entries, {
-    a: 1,
-    b: 2,
-    c: 3,
-    d: 4
-  },
+  test.equal(entries, [
+    ['a', 1],
+    ['b', 2],
+    ['c', 3],
+    ['d', 4]
+  ],
     'Initial: Wrong value from the "entries()" method'
   );
   test.equal(keys, ['a', 'b', 'c', 'd'],
@@ -64,12 +64,12 @@ Tinytest.add('ReactiveMap', function(test) {
   test.isTrue(has,
     'Set existing: Wrong value from the "has()" method'
   );
-  test.equal(entries, {
-    a: 'a',
-    b: 2,
-    c: 3,
-    d: 4
-  },
+  test.equal(entries, [
+    ['a', 'a'],
+    ['b', 2],
+    ['c', 3],
+    ['d', 4]
+  ],
     'Set existing: Wrong value from the "entries()" method'
   );
   test.equal(keys, ['a', 'b', 'c', 'd'],
@@ -91,11 +91,11 @@ Tinytest.add('ReactiveMap', function(test) {
   test.isFalse(has,
     'Delete: Wrong value from the "has()" method'
   );
-  test.equal(entries, {
-    b: 2,
-    c: 3,
-    d: 4
-  },
+  test.equal(entries, [
+    ['b', 2],
+    ['c', 3],
+    ['d', 4]
+  ],
     'Delete: Wrong value from the "entries()" method'
   );
   test.equal(keys, ['b', 'c', 'd'],
@@ -139,9 +139,9 @@ Tinytest.add('ReactiveMap', function(test) {
   test.isTrue(has,
     'Set new: Wrong value from the "has()" method'
   );
-  test.equal(entries, {
-    a: 1
-  },
+  test.equal(entries, [
+    ['a', 1]
+  ],
     'Set new: Wrong value from the "entries()" method'
   );
   test.equal(keys, ['a'],
