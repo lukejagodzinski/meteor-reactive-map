@@ -2,6 +2,7 @@ Tinytest.add('ReactiveMap', function(test) {
   var map = new ReactiveMap({a: 1, b: 2, c: 3, d: 4});
 
   var autorun = [];
+  var returned;
   var get;
   Tracker.autorun(function() {
     get = map.get('a');
@@ -62,13 +63,16 @@ Tinytest.add('ReactiveMap', function(test) {
   test.equal(
     autorun.sort(),
     ['all', 'get', 'has', 'entries', 'keys', 'values', 'size'].sort(),
-    'Initial: Executed wrong autorun functions'
+    'Initial: Wrong autorun functions executed'
   );
 
   // Set existing.
   autorun = [];
-  map.set('a', 'a');
+  returned = map.set('a', 'a');
   Tracker.flush();
+  test.instanceOf(returned, ReactiveMap,
+    'Set existing: Wrong returned value from the "set()" method'
+  );
   test.equal(get, 'a',
     'Set existing: Wrong value from the "get()" method'
   );
@@ -93,44 +97,84 @@ Tinytest.add('ReactiveMap', function(test) {
   test.equal(
     autorun.sort(),
     ['all', 'values', 'entries', 'get'].sort(),
-    'Set existing: Executed wrong autorun functions'
+    'Set existing: Wrong autorun functions executed'
   );
 
-  // Delete.
+  // Delete existing.
   autorun = [];
-  map.delete('a');
+  returned = map.delete('a');
   Tracker.flush();
+  test.isTrue(returned,
+    'Delete existing: Wrong returned value from the "delete()" method'
+  );
   test.isUndefined(get,
-    'Delete: Wrong value from the "get()" method'
+    'Delete existing: Wrong value from the "get()" method'
   );
   test.isFalse(has,
-    'Delete: Wrong value from the "has()" method'
+    'Delete existing: Wrong value from the "has()" method'
   );
   test.equal(entries, [['b', 2], ['c', 3], ['d', 4]],
-    'Delete: Wrong value from the "entries()" method'
+    'Delete existing: Wrong value from the "entries()" method'
   );
   test.equal(all, {b: 2, c: 3, d: 4},
-    'Delete: Wrong value from the "all()" method'
+    'Delete existing: Wrong value from the "all()" method'
   );
   test.equal(keys, ['b', 'c', 'd'],
-    'Delete: Wrong value from the "keys()" method'
+    'Delete existing: Wrong value from the "keys()" method'
   );
   test.equal(values, [2, 3, 4],
-    'Delete: Wrong value from the "values()" method'
+    'Delete existing: Wrong value from the "values()" method'
   );
   test.equal(size, 3,
-    'Delete: Wrong value from the "size()" method'
+    'Delete existing: Wrong value from the "size()" method'
   );
   test.equal(
     autorun.sort(),
     ['all', 'get', 'has', 'size', 'entries', 'keys', 'values'].sort(),
-    'Delete: Executed wrong autorun functions'
+    'Delete existing: Wrong autorun functions executed'
+  );
+
+  // Delete not existing.
+  autorun = [];
+  returned = map.delete('a');
+  Tracker.flush();
+  test.isFalse(returned,
+    'Delete not existing: Wrong returned value from the "delete()" method'
+  );
+  test.isUndefined(get,
+    'Delete not existing: Wrong value from the "get()" method'
+  );
+  test.isFalse(has,
+    'Delete not existing: Wrong value from the "has()" method'
+  );
+  test.equal(entries, [['b', 2], ['c', 3], ['d', 4]],
+    'Delete not existing: Wrong value from the "entries()" method'
+  );
+  test.equal(all, {b: 2, c: 3, d: 4},
+    'Delete not existing: Wrong value from the "all()" method'
+  );
+  test.equal(keys, ['b', 'c', 'd'],
+    'Delete not existing: Wrong value from the "keys()" method'
+  );
+  test.equal(values, [2, 3, 4],
+    'Delete not existing: Wrong value from the "values()" method'
+  );
+  test.equal(size, 3,
+    'Delete not existing: Wrong value from the "size()" method'
+  );
+  test.equal(
+    autorun.sort(),
+    [].sort(),
+    'Delete not existing: Wrong autorun functions executed'
   );
 
   // Set new.
   autorun = [];
-  map.set('a', 1);
+  returned = map.set('a', 1);
   Tracker.flush();
+  test.instanceOf(returned, ReactiveMap,
+    'Set new: Wrong returned value from the "set()" method'
+  );
   test.equal(get, 1,
     'Set new: Wrong value from the "get()" method'
   );
@@ -155,13 +199,16 @@ Tinytest.add('ReactiveMap', function(test) {
   test.equal(
     autorun.sort(),
     ['all', 'size', 'entries', 'keys', 'values', 'has', 'get'].sort(),
-    'Set new: Executed wrong autorun functions'
+    'Set new: Wrong autorun functions executed'
   );
 
   // Clear.
   autorun = [];
-  map.clear();
+  returned = map.clear();
   Tracker.flush();
+  test.equal(returned, undefined,
+    'Clear: Wrong returned value from the "clear()" method'
+  );
   test.isUndefined(get,
     'Clear: Wrong value from the "get()" method'
   );
@@ -186,6 +233,6 @@ Tinytest.add('ReactiveMap', function(test) {
   test.equal(
     autorun.sort(),
     ['all', 'size', 'entries', 'keys', 'values', 'has', 'get'].sort(),
-    'Clear: Executed wrong autorun functions'
+    'Clear: Wrong autorun functions executed'
   );
 });

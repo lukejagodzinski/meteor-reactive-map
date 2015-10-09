@@ -20,8 +20,6 @@ Package.onTest(function(api) {
   api.use([
     'tinytest',
     'tracker',
-    'underscore',
-    'ejson',
     'jagi:reactive-map'
   ]);
 
