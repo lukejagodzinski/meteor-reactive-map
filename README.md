@@ -19,6 +19,8 @@ $ meteor add jagi:reactive-map
 
 ## Usage
 
+All methods are reactive. Values are stored in the original form, so you can also store functions and objects with functions. Objects are stored as references.
+
 ```js
 var map = new ReactiveMap();
 
