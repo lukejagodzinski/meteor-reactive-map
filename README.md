@@ -25,7 +25,7 @@ All methods are reactive. Values are stored in the original form, so you can als
 var map = new ReactiveMap();
 // Or
 var map = new ReactiveMap({
-  key1: 'value1,
+  key1: 'value1',
   key2: 'value2'
 });
 
