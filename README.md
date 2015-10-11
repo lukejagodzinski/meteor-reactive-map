@@ -23,6 +23,11 @@ All methods are reactive. Values are stored in the original form, so you can als
 
 ```js
 var map = new ReactiveMap();
+// Or
+var map = new ReactiveMap({
+  key1: 'value1,
+  key2: 'value2'
+});
 
 map.set('key', 'value');
 map.set({
@@ -32,8 +37,9 @@ map.set({
 
 map.get('key'); // Returns "value".
 
-map.entries(); // Returns {key: "value", key1: "value1", key2: "value2"}.
-map.all(); // Alias to "entries" method.
+map.entries(); // Returns [['key1', 'value1'], ['key2', 'value2']].
+
+map.all(); // Returns {key: "value", key1: "value1", key2: "value2"}.
 
 map.keys(); // Returns ['key', 'key1', 'key2'].
 
